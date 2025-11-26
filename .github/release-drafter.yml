@@ -1,8 +1,8 @@
-name-template: 'v$RESOLVED_VERSION'
-tag-template: 'v$RESOLVED_VERSION'
+name-template: 'v$NEXT_PATCH_VERSION'
+tag-template: 'v$NEXT_PATCH_VERSION'
 
 categories:
-  - title: '🚀 Features'
+  - title: '🚀 New Features'
     labels:
       - 'feature'
       - 'feat'
@@ -10,15 +10,21 @@ categories:
     labels:
       - 'fix'
       - 'bug'
-  - title: '🧰 Maintenance'
+  - title: '🧰 Maintenance & Polish'
     labels:
       - 'chore'
       - 'refactor'
       - 'docs'
+      - 'style'
+      - 'perf'
+      - 'test'
+      - 'ci'
+      - 'build'
 
 version-resolver:
   major:
     labels:
+      - 'major'
       - 'breaking'
   minor:
     labels:
@@ -28,7 +34,6 @@ version-resolver:
 
 template: |
   ## What's Changed
-
   $CHANGES
-
-  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+  
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$NEXT_PATCH_VERSION
