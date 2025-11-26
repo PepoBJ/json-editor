@@ -1,26 +1,165 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ACE Editor Custom Styles */
+.ace_editor {
+  font-family: Monaco, Menlo, "Ubuntu Mono", monospace !important;
+  font-size: 11px !important;
+  line-height: 1.5 !important;
+}
+
+.ace_gutter {
+  background-color: #f9fafb !important;
+  color: #6b7280 !important;
+  border-right: 1px solid #e5e7eb !important;
+}
+
+.dark .ace_gutter {
+  background-color: #1f2937 !important;
+  color: #9ca3af !important;
+  border-right: 1px solid #374151 !important;
+}
+
+.ace_scroller {
+  background-color: #ffffff !important;
+}
+
+.dark .ace_scroller {
+  background-color: #111827 !important;
+}
+
+.ace_content {
+  color: #111827 !important;
+}
+
+.dark .ace_content {
+  color: #f9fafb !important;
+}
+
+.ace_cursor {
+  color: #2563eb !important;
+}
+
+.ace_selection {
+  background-color: rgba(37, 99, 235, 0.2) !important;
+}
+
+.ace_active-line {
+  background-color: rgba(37, 99, 235, 0.1) !important;
+}
+
+.dark .ace_active-line {
+  background-color: rgba(37, 99, 235, 0.15) !important;
+}
+
+/* JSON syntax colors */
+.ace_variable {
+  color: #111827 !important;
+}
+
+.dark .ace_variable {
+  color: #f9fafb !important;
+}
+
+.ace_string {
+  color: #10b981 !important;
+}
+
+.ace_constant.ace_numeric {
+  color: #111827 !important;
+}
+
+.dark .ace_constant.ace_numeric {
+  color: #f9fafb !important;
+}
+
+.ace_constant.ace_language,
+.ace_constant.ace_language.ace_boolean,
+.ace_keyword {
+  color: #6b7280 !important;
+}
+
+.dark .ace_constant.ace_language,
+.dark .ace_constant.ace_language.ace_boolean,
+.dark .ace_keyword {
+  color: #9ca3af !important;
+}
+
+.ace_paren,
+.ace_punctuation {
+  color: #6b7280 !important;
+}
+
+.dark .ace_paren,
+.dark .ace_punctuation {
+  color: #9ca3af !important;
+}
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
+}
+
+/* ACE Editor error highlight */
+.ace_marker-layer .bg-red-100 {
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(254, 202, 202, 0.5) !important;
+}
+
+.dark .ace_marker-layer .dark\:bg-red-900\/30 {
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(127, 29, 29, 0.3) !important;
+}
+
+/* Compare diff markers */
+.ace_marker-layer .ace_diff_added {
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(134, 239, 172, 0.3) !important;
+}
+
+.dark .ace_marker-layer .ace_diff_added {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.ace_marker-layer .ace_diff_removed {
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(254, 202, 202, 0.3) !important;
+}
+
+.dark .ace_marker-layer .ace_diff_removed {
+  background-color: rgba(220, 38, 38, 0.2) !important;
+}
+
+.ace_marker-layer .ace_diff_modified {
+  position: absolute;
+  z-index: 20;
+  background-color: rgba(253, 224, 71, 0.3) !important;
+}
+
+.dark .ace_marker-layer .ace_diff_modified {
+  background-color: rgba(234, 179, 8, 0.2) !important;
+}
+
+/* Tour highlight */
+.tour-highlight {
+  position: relative;
+  z-index: 45 !important;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.5), 0 0 20px rgba(16, 185, 129, 0.3) !important;
+  border-radius: 0.25rem;
 }
