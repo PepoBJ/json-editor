@@ -32,78 +32,12 @@ export function CompareModal({ isOpen, onClose }: CompareModalProps) {
   const [compareText, setCompareText] = useState('');
   const [diffs, setDiffs] = useState<LineDiff[]>([]);
   const [currentDiffIndex, setCurrentDiffIndex] = useState(0);
-  const editor1Ref = useRef<any>(null);
-  const editor2Ref = useRef<any>(null);
-  const markerIds1Ref = useRef<number[]>([]);
-  const markerIds2Ref = useRef<number[]>([]);
 
   useEffect(() => {
     loadAceModes();
   }, []);
 
-  useEffect(() => {
-    if (diffs.length > 0) {
-      setTimeout(() => {
-        addMarkers();
-        navigateToDiff(0);
-      }, 300);
-    }
-  }, [diffs]);
-
-  const clearMarkers = () => {
-    if (editor1Ref.current?.editor) {
-      markerIds1Ref.current.forEach(id => {
-        try {
-          editor1Ref.current.editor.session.removeMarker(id);
-        } catch (e) {}
-      });
-      markerIds1Ref.current = [];
-    }
-    if (editor2Ref.current?.editor) {
-      markerIds2Ref.current.forEach(id => {
-        try {
-          editor2Ref.current.editor.session.removeMarker(id);
-        } catch (e) {}
-      });
-      markerIds2Ref.current = [];
-    }
-  };
-
-  const addMarkers = () => {
-    clearMarkers();
-    
-    if (!editor1Ref.current?.editor || !editor2Ref.current?.editor) return;
-    if (diffs.length === 0) return;
-
-    try {
-      const Range = (window as any).ace.require('ace/range').Range;
-      
-      diffs.forEach(diff => {
-        const lineNum = diff.lineNumber;
-        
-        const markerId1 = editor1Ref.current.editor.session.addMarker(
-          new Range(lineNum, 0, lineNum, 1000),
-          'ace_diff_modified',
-          'fullLine',
-          false
-        );
-        markerIds1Ref.current.push(markerId1);
-        
-        const markerId2 = editor2Ref.current.editor.session.addMarker(
-          new Range(lineNum, 0, lineNum, 1000),
-          'ace_diff_modified',
-          'fullLine',
-          false
-        );
-        markerIds2Ref.current.push(markerId2);
-      });
-    } catch (e) {
-      console.error('Error adding markers:', e);
-    }
-  };
-
   const handleCompare = () => {
-    clearMarkers();
     setDiffs([]);
     setCurrentDiffIndex(0);
     
@@ -155,16 +89,6 @@ export function CompareModal({ isOpen, onClose }: CompareModalProps) {
     }
     
     setCurrentDiffIndex(newIndex);
-    const diff = diffs[newIndex];
-    
-    if (editor1Ref.current?.editor) {
-      editor1Ref.current.editor.scrollToLine(diff.lineNumber, true, true, () => {});
-      editor1Ref.current.editor.gotoLine(diff.lineNumber + 1, 0, true);
-    }
-    if (editor2Ref.current?.editor) {
-      editor2Ref.current.editor.scrollToLine(diff.lineNumber, true, true, () => {});
-      editor2Ref.current.editor.gotoLine(diff.lineNumber + 1, 0, true);
-    }
   };
 
   const currentDiff = diffs[currentDiffIndex];
@@ -212,7 +136,6 @@ export function CompareModal({ isOpen, onClose }: CompareModalProps) {
             <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100 text-sm">Original</h3>
             <div className="flex-1 min-h-0 border border-gray-300 dark:border-gray-600 rounded overflow-hidden">
               <AceEditor
-                ref={editor1Ref}
                 mode="json"
                 theme={theme === 'light' ? 'textmate' : 'monokai'}
                 value={jsonContent}
@@ -234,7 +157,6 @@ export function CompareModal({ isOpen, onClose }: CompareModalProps) {
             <h3 className="font-semibold mb-2 text-gray-900 dark:text-gray-100 text-sm">Compare With</h3>
             <div className="flex-1 min-h-0 border border-gray-300 dark:border-gray-600 rounded overflow-hidden">
               <AceEditor
-                ref={editor2Ref}
                 mode="json"
                 theme={theme === 'light' ? 'textmate' : 'monokai'}
                 value={compareText}
