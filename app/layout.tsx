@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: "JSON | roberthc",
   description: "Free online JSON viewer, editor, formatter, and converter. Format, validate, compare JSON. Convert to YAML, XML, CSV, Spark. 100% local processing.",
   keywords: ["json", "json viewer", "json editor", "json formatter", "json validator", "json to yaml", "json to xml", "json compare", "json diff"],
-  authors: [{ name: "Robert Huaman", url: "https://roberthc.dev" }],
-  creator: "Robert Huaman",
-  publisher: "Robert Huaman",
+  authors: [{ name: "Robert Huaman Caceres", url: "https://roberthc.dev" }],
+  creator: "Robert Huaman Caceres",
+  publisher: "Robert Huaman Caceres",
   metadataBase: new URL("https://json.roberthc.dev"),
   alternates: {
     canonical: "https://json.roberthc.dev",
@@ -67,7 +67,7 @@ export default function RootLayout({
               },
               "author": {
                 "@type": "Person",
-                "name": "Robert Huaman",
+                "name": "Robert Huaman Caceres",
                 "url": "https://roberthc.dev"
               }
             })
