@@ -5,7 +5,7 @@ export function PrivacyBanner() {
     <div className="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 px-4 py-1 text-[0.625rem] flex items-center justify-between text-gray-600 dark:text-gray-400">
       <span>🔒 100% Local Processing - Your data never leaves your device</span>
       <a 
-        href="https://github.com/roberthc" 
+        href="https://github.com/PepoBJ/json-editor" 
         target="_blank" 
         rel="noopener noreferrer"
         className="inline-flex items-center gap-1 text-gray-900 dark:text-gray-100 font-medium hover:opacity-70 transition-opacity"
