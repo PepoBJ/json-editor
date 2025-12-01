@@ -106,7 +106,7 @@ export const useJsonStore = create<JsonStore>((set, get) => ({
       parsedData: null,
       validationResult: { isValid: false, error: null, data: null },
       stats: { lines: 0, chars: 0, size: 0 },
-      expandedPaths: new Set(),
+      expandedPaths: [],
       selectedPath: null,
     });
   },
