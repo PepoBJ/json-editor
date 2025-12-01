@@ -7,7 +7,6 @@ import { StatusBar } from '@/components/features/toolbar/StatusBar';
 import { CodeEditor } from '@/components/features/editor/CodeEditor';
 import { TreeView } from '@/components/features/tree-view/TreeView';
 import { ToastContainer } from '@/components/ui/Toast';
-import { ThemeProvider } from '@/components/ui/ThemeProvider';
 import { PrivacyBanner } from '@/components/ui/PrivacyBanner';
 import { Tour } from '@/components/ui/Tour';
 import { useJsonStore } from '@/store/useJsonStore';
@@ -40,9 +39,8 @@ export default function Home() {
   }
 
   return (
-    <ThemeProvider>
-      <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-800">
-        <Header />
+    <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-800">
+      <Header />
         
         <div className="flex flex-1 overflow-hidden">
           <ViewToggle />
@@ -72,7 +70,6 @@ export default function Home() {
         <ToastContainer />
         <Tour />
       </div>
-    </ThemeProvider>
   );
 }
 
