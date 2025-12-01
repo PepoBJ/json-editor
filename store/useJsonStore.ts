@@ -11,7 +11,7 @@ interface JsonStore {
   // UI State
   theme: Theme;
   viewMode: ViewMode;
-  expandedPaths: Set<string>;
+  expandedPaths: string[];
   selectedPath: string | null;
   
   // Search
@@ -58,7 +58,7 @@ export const useJsonStore = create<JsonStore>((set, get) => ({
   validationResult: { isValid: false, error: null, data: null },
   theme: (typeof window !== 'undefined' && localStorage.getItem('json-tool-theme') as Theme) || 'light',
   viewMode: 'split',
-  expandedPaths: new Set<string>(),
+  expandedPaths: [],
   selectedPath: null,
   searchQuery: '',
   searchMatches: [],
@@ -106,7 +106,7 @@ export const useJsonStore = create<JsonStore>((set, get) => ({
       parsedData: null,
       validationResult: { isValid: false, error: null, data: null },
       stats: { lines: 0, chars: 0, size: 0 },
-      expandedPaths: new Set(),
+      expandedPaths: [],
       selectedPath: null,
     });
   },
@@ -136,13 +136,12 @@ export const useJsonStore = create<JsonStore>((set, get) => ({
 
   togglePath: (path: string) => {
     const { expandedPaths } = get();
-    const newPaths = new Set(expandedPaths);
-    if (newPaths.has(path)) {
-      newPaths.delete(path);
-    } else {
-      newPaths.add(path);
-    }
-    set({ expandedPaths: newPaths });
+    const isExpanded = expandedPaths.includes(path);
+    set({ 
+      expandedPaths: isExpanded 
+        ? expandedPaths.filter(p => p !== path)
+        : [...expandedPaths, path]
+    });
   },
 
   selectPath: (path: string | null) => {
@@ -151,11 +150,11 @@ export const useJsonStore = create<JsonStore>((set, get) => ({
 
   expandAll: () => {
     // Will be populated by tree component
-    set({ expandedPaths: new Set() });
+    set({ expandedPaths: [] });
   },
 
   collapseAll: () => {
-    set({ expandedPaths: new Set() });
+    set({ expandedPaths: [] });
   },
 
   // Search Actions
