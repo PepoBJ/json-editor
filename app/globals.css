@@ -32,9 +32,9 @@ body {
 }
 
 .dark .ace_gutter {
-  background-color: #171717 !important;
+  background-color: #1f2937 !important;
   color: #a3a3a3 !important;
-  border-right: 1px solid #262626 !important;
+  border-right: 1px solid #374151 !important;
 }
 
 .ace_scroller {
@@ -42,7 +42,7 @@ body {
 }
 
 .dark .ace_scroller {
-  background-color: #0a0a0a !important;
+  background-color: #1f2937 !important;
 }
 
 .ace_content {
