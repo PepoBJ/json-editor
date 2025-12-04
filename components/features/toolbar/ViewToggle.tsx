@@ -10,6 +10,7 @@ export function ViewToggle() {
   const views: { mode: ViewMode; label: string }[] = [
     { mode: 'editor', label: 'Editor' },
     { mode: 'tree', label: 'Tree' },
+    { mode: 'table', label: 'Table' },
     { mode: 'split', label: 'Split' },
   ];
 

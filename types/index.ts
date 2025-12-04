@@ -1,8 +1,6 @@
 // Core types for JSON Tool
 
-export type Theme = 'light' | 'dark';
-
-export type ViewMode = 'editor' | 'tree' | 'split';
+export type ViewMode = 'editor' | 'tree' | 'split' | 'table';
 
 export type ExportFormat = 'yaml' | 'xml' | 'csv' | 'spark-python' | 'spark-scala';
 
