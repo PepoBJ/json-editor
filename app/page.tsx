@@ -6,6 +6,7 @@ import { ViewToggle } from '@/components/features/toolbar/ViewToggle';
 import { StatusBar } from '@/components/features/toolbar/StatusBar';
 import { CodeEditor } from '@/components/features/editor/CodeEditor';
 import { TreeView } from '@/components/features/tree-view/TreeView';
+import { TableView } from '@/components/features/table-view/TableView';
 import { ToastContainer } from '@/components/ui/Toast';
 import { PrivacyBanner } from '@/components/ui/PrivacyBanner';
 import { Tour } from '@/components/ui/Tour';
@@ -32,7 +33,7 @@ export default function Home() {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [viewMode, setViewMode]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!mounted) {
     return null;
@@ -50,17 +51,26 @@ export default function Home() {
               'h-full',
               viewMode === 'split' && 'grid grid-cols-2 gap-0'
             )}>
-              {(viewMode === 'editor' || viewMode === 'split') && (
-                <div className="h-full overflow-hidden border-r border-gray-200 dark:border-gray-700">
-                  <CodeEditor />
-                </div>
-              )}
+              <div className={clsx(
+                'h-full overflow-hidden border-r border-gray-200 dark:border-gray-700',
+                viewMode !== 'editor' && viewMode !== 'split' && 'hidden'
+              )}>
+                <CodeEditor />
+              </div>
               
-              {(viewMode === 'tree' || viewMode === 'split') && (
-                <div className="h-full overflow-hidden">
-                  <TreeView />
-                </div>
-              )}
+              <div className={clsx(
+                'h-full overflow-hidden',
+                viewMode !== 'tree' && viewMode !== 'split' && 'hidden'
+              )}>
+                <TreeView />
+              </div>
+
+              <div className={clsx(
+                'h-full overflow-hidden',
+                viewMode !== 'table' && 'hidden'
+              )}>
+                <TableView />
+              </div>
             </div>
           </main>
         </div>

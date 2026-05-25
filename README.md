@@ -1,6 +1,6 @@
 # JSON Tool
 
-A powerful JSON viewer, editor, and converter built with Next.js 15.
+A powerful JSON viewer, editor, and converter built with Next.js 16.
 
 ## Features
 
@@ -8,10 +8,18 @@ A powerful JSON viewer, editor, and converter built with Next.js 15.
 - 📦 Minify JSON
 - 🔄 Convert to YAML, XML, CSV, Spark (Python/Scala)
 - ⚖️ Compare two JSONs side-by-side
-- 🌳 Tree view with search
-- 🌙 Dark mode
+- 🌳 Tree view with search and expand/collapse
+- 📊 Table view for structured data visualization
+- 🌙 Dark mode with theme persistence
 - ⌨️ Keyboard shortcuts
 - 🔒 100% local processing - your data never leaves your device
+
+## View Modes
+
+- **Editor** - Code editor with syntax highlighting
+- **Tree** - Hierarchical tree view with search
+- **Table** - Grid table view for nested JSON data
+- **Split** - Side-by-side editor and tree view
 
 ## Getting Started
 
@@ -32,11 +40,14 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Tech Stack
 
-- Next.js 15 (App Router)
+- Next.js 16 (App Router)
+- React 19
 - TypeScript
 - Tailwind CSS
 - Zustand (State Management)
 - ACE Editor
+- react-json-grid
+- next-themes
 - Lucide Icons
 
 ## License
